@@ -15,6 +15,9 @@ run `npm install` in project folder to install dependencies `node app.js` to run
 - include functions to trim off optional words (like "The" or "A" at the start)
 - check a match by a certain percent rather than exact spelling (allow spelling mistakes)
 	- alternate answers?
+### session.js (?)
+- Need to track session IDs for submissions, separate file or part of main?
+- Last priority
 
 ## Database
 ### Tables
