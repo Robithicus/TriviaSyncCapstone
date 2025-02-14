@@ -7,7 +7,7 @@ function scoreTest(test, expected, submissions, answers) {
     testsRun++
     let actual = _score(submissions, answers)
     if (expected != actual) {
-        failedTests.push(`${test}: Expected ${expected} | Actual ${actual}`)
+        failedTests.push(`${test}: Expected ${expected}, Actual ${actual}`)
     }
 }
 
@@ -15,7 +15,7 @@ function scoreEmpty() { // test for empty submission
     let submissions = []
     let answers = []
 
-    scoreTest("Empty Test", -1, submissions, answers)
+    scoreTest("Score.js | Empty Test", -1, submissions, answers)
 }
 
 function scoreSize() { // test for different size submissions and answers
@@ -27,7 +27,7 @@ function scoreSize() { // test for different size submissions and answers
     submissions.push("data")
     answers.push("data")
 
-    scoreTest("Size Test", -1, submissions, answers)
+    scoreTest("Score.js | Size Test", -1, submissions, answers)
 }
 
 function scoreTrim() { // test if starting words/enders mess up answers
@@ -43,7 +43,7 @@ function scoreTrim() { // test if starting words/enders mess up answers
     submissions.push("the universes!") // since I decided to parse both answer and submission I want to test it on both
     answers.push("the universes!") // also testing ender and plural and start
 
-    scoreTest("Start Test", 3, submissions, answers)
+    scoreTest("Score.js | Start Test", 3, submissions, answers)
 }
 
 function scoreCase() { // test if upper/lower case mess up answers
@@ -53,7 +53,7 @@ function scoreCase() { // test if upper/lower case mess up answers
     submissions.push("AnSWeR")
     answers.push("Answer")
 
-    scoreTest("Case Test", 1, submissions, answers)
+    scoreTest("Score.js | Case Test", 1, submissions, answers)
 }
 
 function scoreSpell() { // test if spelling mistakes mess up answers
@@ -63,7 +63,7 @@ function scoreSpell() { // test if spelling mistakes mess up answers
     submissions.push("answre")
     answers.push("answer")
 
-    scoreTest("Spell Test", 1, submissions, answers)
+    scoreTest("Score.js | Spell Test", 1, submissions, answers)
 }
 
 function scoreBasic() { // more realistic example
@@ -85,7 +85,7 @@ function scoreBasic() { // more realistic example
     submissions.push("Abby Road!") // just a wrong answer
     answers.push("Boston Street")
 
-    scoreTest("Basic Test", 4, submissions, answers)
+    scoreTest("Score.js | Basic Test", 4, submissions, answers)
 }
 
 scoreEmpty()
