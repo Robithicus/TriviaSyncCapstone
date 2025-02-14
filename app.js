@@ -5,9 +5,7 @@ const port = 3000
 const database = require('./database.js')
 
 app.get('/', (req, res) => {
-    database.getQuestions("tst", 5).then((promise) => {
-        res.send(promise)
-    })
+    res.send()
 })
 
 app.listen(port, () => {
