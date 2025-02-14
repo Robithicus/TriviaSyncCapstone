@@ -1,11 +1,11 @@
-import { score as _score } from './score.js'
+const scorejs = require("./score.js")
 
 let failedTests = []
 let testsRun = 0
 
 function scoreTest(test, expected, submissions, answers) {
     testsRun++
-    let actual = _score(submissions, answers)
+    let actual = scorejs.score(submissions, answers)
     if (expected != actual) {
         failedTests.push(`${test}: Expected ${expected}, Actual ${actual}`)
     }
