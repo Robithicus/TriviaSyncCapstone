@@ -1,4 +1,4 @@
-const scorejs = require("./score.js")
+const scorejs = require("../score.js")
 
 let failedTests = []
 let testsRun = 0
@@ -60,10 +60,13 @@ function scoreSpell() { // test if spelling mistakes mess up answers
     let submissions = []
     let answers = []
 
-    submissions.push("answre")
-    answers.push("answer")
+    submissions.push("answer")
+    answers.push("anwser")
 
-    scoreTest("Score.js | Spell Test", 1, submissions, answers)
+    submissions.push("kitten")
+    answers.push("kitty")
+
+    scoreTest("Score.js | Spell Test", 2, submissions, answers)
 }
 
 function scoreBasic() { // more realistic example
