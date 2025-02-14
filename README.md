@@ -29,6 +29,7 @@ run `npm install` in project folder to install dependencies `node app.js` to run
 		- `return 2;` - name existed, added another score
 	- `nameParse(name)` - Return name without dangerous symbols in it, we should support Unicode(?), no semicolons, anything else to remove?
 		- Private function
+		- Remove `;` and `'`
 ### score.js
 - separate file called by app.js
 - include functions to trim off optional words (like "The" or "A" at the start)
