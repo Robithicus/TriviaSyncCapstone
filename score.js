@@ -17,14 +17,16 @@ function isCorrect(submission, answer) { // return bool correct, placeholder
     submission = parse(submission)
     answer = parse(answer)
 
-    let lavdist = lavenshteinDistance(submission, answer)
+    let levdist = levenshteinDistance(submission, answer)
 
-    return lavdist <= 2
+    // compare lengths of strings?
+    // base levensthein distance threshold on lenth of strings
+    return levdist <= 2
 }
 
 function parse(s) { // return string submission, remove whitespace, 'the', 'a', make lowercase
     let removeWords = ["the", "a"]
-    let removeEnders = [".", "!"]
+    let removeEnders = [".", "!", "?"]
     
     s = s.trim()
     s = s.toLowerCase()
@@ -48,7 +50,7 @@ function parse(s) { // return string submission, remove whitespace, 'the', 'a', 
     return s
 }
 
-function lavenshteinDistance(s1, s2) {
+function levenshteinDistance(s1, s2) {
     let m = s1.length
     let n = s2.length
 
