@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Scores</title>
+    </head>
+    <body>
+        <h1>All Scores</h1>
+
+        <script>
+            const ws = new WebSocket("ws://localhost:8080")
+            const scores = document.getElementById("scores")
+
+            ws.onmessage = event => {
+                console.log(event.data)
+                let scores = event.data
+                for (let i = 0; i < 3; i++) {
+                    top[i].textContent = `#${i} ${scores[i][0]} - ${scores[i][1]}`
+                }
+            }
+        </script>
+    </body>
+</html>

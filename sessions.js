@@ -1,8 +1,12 @@
+import { Session } from "./sessionData.js"
+
 let sessions = new Map() // map is like dictionary
 
-export function createSession(answers) {
-    let sessionId = getValidId()
-    sessions.set(sessionId, answers)
+export function createSession(questions, answers) {
+    let sessionId = `${getValidId()}`
+    let session = new Session(questions, answers, sessionId)
+    sessions.set(sessionId, session)
+    console.log(`Created Session ${sessionId}`)
     return sessionId
 }
 
@@ -12,6 +16,7 @@ export function getSession(sessionId) {
 
 export function deleteSession(sessionId) {
     sessions.delete(sessionId)
+    console.log(`Deleted Session ${sessionId}`)
 }
 
 function getValidId() { // ids range from 100000000 to 999999999 (9 digit guarantee, 899,999,999 sessions)

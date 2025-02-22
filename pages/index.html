@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Home</title>
+    </head>
+    <body>
+        <h1>TriviaSync! :)</h1>
+        <h2>Top Scores</h2>
+        <p class="top">Loading...</p>
+        <p class="top"></p>
+        <p class="top"></p>
+
+        <h2><a href="/quiz">Take Quiz</a></h2>
+
+        <script>
+            const ws = new WebSocket("ws://localhost:8080")
+            const topScores = document.getElementsByClassName("top")
+
+            ws.onmessage = event => {
+                console.log(event.data)
+                let scores = event.data
+                for (let i = 0; i < 3; i++) {
+                    topScores[i].textContent = `#${i} ${scores[i][0]} - ${scores[i][1]}`
+                }
+            }
+        </script>
+    </body>
+</html>

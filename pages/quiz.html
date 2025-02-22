@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Quiz</title>
+    </head>
+    <body>
+        <form onsubmit="return false">
+            <label class="q" for="q1">Loading...</label>
+            <input type="text" id="q1a" name="q1"/><br>
+
+            <label class="q" for="q2">Loading</label>
+            <input type="text" id="q2a" name="q2"/><br>
+
+            <button id="button">Score Quiz</button>
+        </form>
+
+        <script>
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const sessionId = urlParams.get("sessionId")
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                console.log(this.responseText)
+                const questions = document.getElementsByClassName("q")
+                const response = JSON.parse(this.responseText)
+                for (let i = 0; i < questions.length; i++) {
+                    questions[i].textContent = response[i]
+                }
+            }
+            xhttp.open("GET", `/questions?sessionId=${sessionId}`, true)
+            xhttp.send()
+
+            document.getElementById("button").onclick = score
+
+            function score() {
+                console.log("testsubmit")
+            }
+        </script>
+    </body>
+</html>
