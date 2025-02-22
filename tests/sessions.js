@@ -1,5 +1,6 @@
-import { createSession } from "../sessions.js"
+import * as sessions from "../sessions.js"
 
-let sessionId = createSession("testData")
+let sessionId = sessions.createSession("testData")
 
 console.log(sessionId)
+console.log(sessions.getSession(sessionId))
