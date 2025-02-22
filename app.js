@@ -1,8 +1,6 @@
-const express = require('express')
+import express from 'express'
 const app = express()
 const port = 3000
-
-const database = require('./database.js')
 
 app.get('/', (req, res) => {
     res.send()
