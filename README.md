@@ -27,6 +27,7 @@ run `npm install` in project folder to install dependencies `node app.js` to run
 		- `return 1;` - submitted and updated existing name entry
 		- `return -1;` - did not submit because of existing name
 		- `return 2;` - name existed, added another score
+	- `getScores(limit = 100)` - Gets top 100 entries, can get any number of entries though 
 	- `nameParse(name)` - Return name without dangerous symbols in it, we should support Unicode(?), no semicolons, anything else to remove?
 		- Private function
 		- Remove `;`, `'`, `_`, and `\`
@@ -50,8 +51,12 @@ run `npm install` in project folder to install dependencies `node app.js` to run
 - `getSession(sessionId)` - return `questionData`, or `null` if invalid session
 - `deleteSession(sessionId)` - void, remove `sessionId` from list, only call after scoring (after closing web socket, can it be done?)
 - `sessions` - private dictionary; key: `sessionId`, value: `questionData`
-### questionData.js or sessionData.js
+### sessionData.js
 - class file for organizing data
+- questions: list of questions
+- answers: list of answers
+- id: sessionId
+- wsc: websocket connection, unused for now
 
 ## Database
 ### Tables
