@@ -4,20 +4,21 @@
     </head>
     <body>
         <h1>All Scores</h1>
-        <ol>
-            <li>Loading...</li>
-        </ol>
+        <ol id="scores"></ol>
 
         <script>
             const ws = new WebSocket("ws://localhost:8080")
             const scores = document.getElementById("scores")
 
             ws.onmessage = event => {
-                console.log(event.data)
-                let scores = event.data
-                for (let i = 0; i < 3; i++) {
-                    top[i].textContent = `#${i} ${scores[i][0]} - ${scores[i][1]}`
-                }
+                const data = JSON.parse(event.data)
+                console.log(data)
+                scores.innerHTML = ""
+                data.forEach(element => {
+                    const child = document.createElement("li")
+                    child.textContent = `${element.username} - ${element.score} pts`
+                    scores.appendChild(child)
+                }); 
             }
         </script>
     </body>

@@ -1,4 +1,4 @@
-export function score(submissions, answers) { // return int score, currently 1 point for each correct answer
+export function scoreSubmission(submissions, answers) { // return int score, currently 1 point for each correct answer
     let score = 0
     if (submissions.length == answers.length && submissions.length > 0 && answers.length > 0) { // assert that we have submissions to compare to each answer
         for (let i = 0; i < submissions.length; i++) {

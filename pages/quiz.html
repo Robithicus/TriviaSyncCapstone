@@ -4,22 +4,28 @@
     </head>
     <body>
         <form onsubmit="return false">
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name"/><br>
+
             <label class="q" for="q1">Loading...</label>
-            <input type="text" id="q1a" name="q1"/><br>
+            <input class="a" type="text" id="q1a" name="q1"/><br>
 
             <label class="q" for="q2">Loading...</label>
-            <input type="text" id="q2a" name="q2"/><br>
+            <input class="a" type="text" id="q2a" name="q2"/><br>
+
+            <label class="q" for="q3">Loading...</label>
+            <input class="a" type="text" id="q3a" name="q3"/><br>
 
             <button id="button">Score Quiz</button>
         </form>
 
         <script>
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
+            const queryString = window.location.search
+            const urlParams = new URLSearchParams(queryString)
             const sessionId = urlParams.get("sessionId")
 
-            const xhttp = new XMLHttpRequest();
-            xhttp.onload = function() {
+            const xhttpGetQ = new XMLHttpRequest()
+            xhttpGetQ.onload = function() {
                 console.log(this.responseText)
                 const questions = document.getElementsByClassName("q")
                 const response = JSON.parse(this.responseText)
@@ -27,13 +33,27 @@
                     questions[i].textContent = response[i]
                 }
             }
-            xhttp.open("GET", `/questions?sessionId=${sessionId}`, true)
-            xhttp.send()
+            xhttpGetQ.open("GET", `/questions?sessionId=${sessionId}`, true)
+            xhttpGetQ.send()
 
             document.getElementById("button").onclick = score
 
             function score() {
-                console.log("testsubmit")
+                const name = document.getElementById("name").value
+                let answers = []
+                Array.from(document.getElementsByClassName("a")).forEach(element => {
+                    answers.push(element.value)
+                });
+
+                let postObj = {name: name, submissions: answers, sessionId: sessionId}
+                const xhttpPostQ = new XMLHttpRequest()
+                xhttpPostQ.onload = function() {
+                    alert(`You got ${this.responseText} pts`)
+                    window.location.href = "/scores"
+                }
+                xhttpPostQ.open("POST", "/submit")
+                xhttpPostQ.setRequestHeader("Content-Type", "application/json")
+                xhttpPostQ.send(JSON.stringify(postObj))
             }
         </script>
     </body>

@@ -1,21 +1,26 @@
 import express from 'express'
 import * as ws from 'ws'
 import path from 'path'
+import { scoreSubmission } from "./score.js"
 import * as sessions from "./sessions.js"
+import * as database from "./database.js"
 const app = express()
 const port = 3000
 const wss = new ws.WebSocketServer({port:8080})
 const __dirname = path.resolve()
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.sendFile(page("index"))
 })
 
-app.get("/quiz", (req, res) => {
+app.get("/quiz", async (req, res) => {
   if ("sessionId" in req.query && req.query.sessionId != "") {
     res.sendFile(page("quiz"))
   } else {
-    let sessionId = sessions.createSession(["test1", "test2"], ["test1a", "test2a"])
+    let questions = await database.getQuestions("TES", 3)
+    let sessionId = sessions.createSession(questions[0], questions[1])
     res.redirect(`/quiz?sessionId=${sessionId}`)
   }
 })
@@ -38,19 +43,25 @@ app.get("/questions", (req, res) => {
   }
 })
 
-app.post("/submit", (req, res) => {
-  res.redirect("/scores")
+app.post("/submit", async (req, res) => {
+  const {name, submissions, sessionId} = req.body
+  let score = scoreSubmission(submissions, sessions.getSession(sessionId).answers)
+  await database.submitScore(name, scoreSubmission(submissions, sessions.getSession(sessionId).answers))
+  sessions.deleteSession(sessionId)
+  wssBroadcastScores()
+  res.send(`${score}`)
 })
 
 app.listen(port, () => {
   console.log(`CapstoneFirstDraft listening at http://localhost:${port}`)
 })
 
-wss.on("connection", function open(ws) {
-  ws.send("test")
+wss.on("connection", async function open(ws) {
+  ws.send(JSON.stringify(await database.getScores()))
 })
 
-function wsBroadcast(data) {
+async function wssBroadcastScores() {
+  let data = JSON.stringify(await database.getScores())
   wss.clients.forEach(client => {
     client.send(data)
   });

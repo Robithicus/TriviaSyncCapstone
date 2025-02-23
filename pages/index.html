@@ -5,21 +5,23 @@
     <body>
         <h1>TriviaSync! :)</h1>
         <h2>Top Scores</h2>
-        <p class="top">Loading...</p>
-        <p class="top"></p>
-        <p class="top"></p>
+        <ol id="scores"></ol>
 
         <h2><a href="/quiz">Take Quiz</a></h2>
+        <h2><a href="/scores">View All Scores</a></h2>
 
         <script>
             const ws = new WebSocket("ws://localhost:8080")
-            const topScores = document.getElementsByClassName("top")
+            const topScores = document.getElementById("scores")
 
             ws.onmessage = event => {
-                console.log(event.data)
-                let scores = event.data
+                const data = JSON.parse(event.data)
+                console.log(data)
+                topScores.innerHTML = ""
                 for (let i = 0; i < 3; i++) {
-                    topScores[i].textContent = `#${i+1} ${scores[i][0]} - ${scores[i][1]}`
+                    const child = document.createElement("li")
+                    child.textContent = `${data[i].username} - ${data[i].score} pts`
+                    topScores.appendChild(child)
                 }
             }
         </script>

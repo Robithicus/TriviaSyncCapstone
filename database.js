@@ -29,9 +29,16 @@ export async function getQuestions(category, amount) {
         const [results, fields] = await connection.query(
             `SELECT * FROM Questions WHERE id LIKE '${category}%' ORDER BY RAND() LIMIT ${amount}`
         );
-
         connection.close()
-        return results
+
+        let retVal = [[],[]]
+        results.forEach(element => {
+            let question = element.question
+            let answer = element.answer
+            retVal[0].push(question)
+            retVal[1].push(answer)
+        });
+        return retVal
     } catch (err) {
         console.log(err)
         connection.close()
@@ -43,19 +50,34 @@ export async function submitScore(name, score) {
     const connection = await getConnection()
 
     name = nameParse(name)
-    
-    connection.query(
-        'INSERT INTO capstone.Scores (username,score) VALUES (?,?)',
-        [name, score],
-        (err, result) => {
-            if (err) {
-              console.error('Error creating product:', err);
-              res.status(500).send('Error creating product');
-              return;
-            }
-        }
-    );
-    connection.close()
+
+    try {
+        await connection.query(
+            `INSERT INTO Scores (username,score) VALUES ('${name}', '${score}')`
+        )
+        connection.close()
+        return 0
+    } catch (err) {
+        console.log(err)
+        connection.close()
+        return -1
+    }
+}
+
+export async function getScores(limit = 100) {
+    const connection = await getConnection()
+
+    try {
+        const [results, fields] = await connection.query(
+            `SELECT * FROM Scores ORDER BY score DESC LIMIT ${limit}`
+        );
+        connection.close()
+        return results
+    } catch (err) {
+        console.log(err)
+        connection.close()
+        return null
+    }
 }
 
 function nameParse(name) {
