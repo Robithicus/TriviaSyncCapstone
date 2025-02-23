@@ -11,10 +11,6 @@ app.get('/', (req, res) => {
   res.sendFile(page("index"))
 })
 
-app.get("/scores", (req, res) => {
-  res.sendFile(page("scores"))
-})
-
 app.get("/quiz", (req, res) => {
   if ("sessionId" in req.query && req.query.sessionId != "") {
     res.sendFile(page("quiz"))
