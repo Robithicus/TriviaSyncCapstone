@@ -2,7 +2,6 @@
 run `npm install` in project folder to install dependencies `node app.js` to run
 
 ### sql/ contains scripts of default test data
-### Currently only implemented displaying questions from database
 
 ## Outline
 ### app.js
@@ -61,7 +60,7 @@ run `npm install` in project folder to install dependencies `node app.js` to run
 ## Database
 ### Tables
 - Scores
-	- name (text, not null), score (int, not null)
+	- username (text, not null), score (int, not null)
 - Questions
 	- id (varchar(7), primary key, not null), question (text, not null), answer (text, not null)
 		- id would be based on category and question number (GEOQ999)

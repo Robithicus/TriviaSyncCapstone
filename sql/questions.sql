@@ -1,4 +1,4 @@
-INSERT INTO capstone.Questions (id,question,answer) VALUES
+INSERT INTO Questions (id,question,answer) VALUES
 	 ('TESQ001','tes q 1','tesa'),
 	 ('TESQ002','tes q 2','tesb'),
 	 ('TESQ003','tes q 3','tesc'),
@@ -9,7 +9,7 @@ INSERT INTO capstone.Questions (id,question,answer) VALUES
 	 ('TETQ003','tet q 3','tetc'),
 	 ('TETQ004','tet q 4','tetd'),
 	 ('TETQ005','tet q 5','tete');
-INSERT INTO capstone.Questions (id,question,answer) VALUES
+INSERT INTO Questions (id,question,answer) VALUES
 	 ('TSTQ001','test q 1','tsta'),
 	 ('TSTQ002','test q 2','tstb'),
 	 ('TSTQ003','test q 3','tstc'),
