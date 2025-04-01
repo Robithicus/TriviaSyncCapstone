@@ -12,6 +12,7 @@ const QuizSubmission = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [score, setScore] = useState(null);
+  const [correctAnswers, setCorrectAnswers] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [username, setUsername] = useState('');
   const [quizStarted, setQuizStarted] = useState(false);
@@ -62,6 +63,7 @@ const QuizSubmission = () => {
 
       const data = await response.json();
       setScore(data.score); // Assuming the server returns { score: 0.8 }
+      setCorrectAnswers(data.answers)
       setIsComplete(true);
     } catch (error) {
       console.error('Error submitting quiz:', error);
@@ -102,6 +104,7 @@ const QuizSubmission = () => {
           score={score}
           answers={answers}
           questions={questions}
+          correctAnswers={correctAnswers}
           setShowResults={setShowResults}
         />
       ) : (

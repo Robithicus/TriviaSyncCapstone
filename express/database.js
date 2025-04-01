@@ -131,7 +131,7 @@ export async function submitScore(name, score) {
 export async function getPosition(name, score) {
     const connection = await getConnection()
 
-    name = nnameParse(name)
+    name = nameParse(name)
 
     try {
         const [results, fields] = await connection.query(

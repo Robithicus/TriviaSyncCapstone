@@ -54,14 +54,15 @@ app.post("/submit", async (req, res) => {
   const {name, submissions, sessionId} = req.body
 
   let session = sessions.getSession(sessionId)
-  let answer = session.getAnswers()
-  let score = scoreSubmission(submissions, answer)
+  let answers = session.getAnswers()
+  console.log(answers)
+  let score = scoreSubmission(submissions, answers)
 
   await database.submitScore(name, score)
   wssBroadcastScores()
 
   let position = database.getPosition(name, score)
-  let data = { score: score, position: position, answers: answer }
+  let data = { score: score, position: position, answers: answers }
 
   sessions.deleteSession(sessionId)
   res.send(data)
