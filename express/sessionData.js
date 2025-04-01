@@ -36,7 +36,7 @@ class QuestionPublic {
     constructor(question, answer, choices, category) {
         this.question = question
         this.category = category
-        this.choices = this.randomChoices(answer, choices)
+        this.options = this.randomChoices(answer, choices)
     }
 
     randomChoices(answer, choices) {
