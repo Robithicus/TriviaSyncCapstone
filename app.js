@@ -19,7 +19,7 @@ app.get("/quiz", async (req, res) => {
   if ("sessionId" in req.query && req.query.sessionId != "") {
     res.sendFile(page("quiz"))
   } else {
-    let questions = await database.getQuestions("TES", 3)
+    let questions = await database.getQuestions(5)  // amount 5 for default number of questions
     let sessionId = sessions.createSession(questions[0], questions[1])
     res.redirect(`/quiz?sessionId=${sessionId}`)
   }
