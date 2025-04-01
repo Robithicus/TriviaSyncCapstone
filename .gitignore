@@ -1,6 +1,8 @@
 node_modules/
 database.json
 dist/
+express/public/*
+!express/public/empty.txt
 
 # Logs
 logs
