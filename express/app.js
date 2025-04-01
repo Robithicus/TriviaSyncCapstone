@@ -31,7 +31,7 @@ app.get("/scores", (req, res) => {
   res.sendFile(page("scores"))
 })
 
-app.get("/questions", (req, res) => {
+app.get("/questions", async (req, res) => {
   // if ("sessionId" in req.query && req.query.sessionId != "") {
   //   let sessionId = req.query.sessionId
   //   let session = sessions.getSession(sessionId)
@@ -43,9 +43,11 @@ app.get("/questions", (req, res) => {
   // } else {
   //   res.send("Need Session Id")
   // }
-
-  let session = sessions.createSession(database.getQuestions())
-  res.send(JSON.stringify(session.getSessionData()))
+  
+  let questions = await database.getQuestions()
+  let session = sessions.createSession(questions)
+  let publicData = session.getSessionData();
+  res.send(publicData)
 })
 
 app.post("/submit", async (req, res) => {

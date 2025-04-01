@@ -6,11 +6,11 @@ export class Session {
     }
 
     getSessionData() {
-        return(publicData(this.id, this.questions))
+        return(PublicData(this.id, this.questions))
     }
 }
 
-class publicData {
+class PublicData {
     constructor (sessionId, questions) {
         this.sessionId = sessionId
         this.questions = questionsRandom(questions)
