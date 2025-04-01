@@ -32,7 +32,7 @@ export async function getQuestions(amount) {  // amount reference in app.js
                 let choice2 = element.choice2 //need to wait for actual name once implemented
                 let choice3 = element.choice3 //need to wait for actual name once implemented
                 let category = element.category
-                Questions.push(new Question(question,answer,choices[choice1,choice2,choice3],category))
+                Questions.push(new Question(newQuestion,answer,choices[choice1,choice2,choice3],category))
             });
             connection.close()
 
