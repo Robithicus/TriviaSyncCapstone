@@ -1,6 +1,6 @@
 import mysql from "mysql2/promise"
 import conf from "./database.json" with { type: "json" }
-import { Question } from "./questionData"
+import { Question } from "./questionData.js"
 
 async function getConnection() {
     const connection = await mysql.createConnection({
@@ -15,8 +15,6 @@ async function getConnection() {
 }
 
 export async function getQuestions(category, amount) {
-    const connection = await getConnection()
-
     // category = category.toUpperCase()
     // if (category.length > 3) {
     //     category = category.substring(0,3)
@@ -48,31 +46,68 @@ export async function getQuestions(category, amount) {
 
     const categories = ["Geography", "Science", "Pop Culture", "History", "Sports"]
 
-    const Questions = []
+    const questions = []
 
-    categories.forEach(async category =>{
+    for (let i = 0; i < categories.length; i++) {
+        const connection = await getConnection()
+        
         try {
             const [results, fields] = await connection.query(
-                `SELECT * FROM Questions WHERE category = '${category}' ORDER BY RAND() LIMIT 1` 
+                `SELECT * FROM Questions WHERE category = '${categories[i]}' ORDER BY RAND() LIMIT 1` 
             );
+            
+            connection.close()
+
             results.forEach(element => {
-                let newQuestion = element.question
+                let question = element.question
                 let answer = element.answer
                 let choice1 = element.choice1 //need to wait for actual name once implemented
                 let choice2 = element.choice2 //need to wait for actual name once implemented
                 let choice3 = element.choice3 //need to wait for actual name once implemented
                 let category = element.category
-                Questions.push(new Question(question,answer,[choice1,choice2,choice3],category))
+                questions.push(new Question(question,answer,[choice1,choice2,choice3],category))
             });
-            connection.close()
 
-            return Questions
         } catch (err) {
-                console.log(err)
-                connection.close()
-                return null
-            }
-    });
+            connection.close()
+            console.log(err)
+            return []
+        }
+    }
+    
+    return questions
+
+    // categories.forEach(async category =>{
+    //     console.log("test")
+    //     const connection = await getConnection()
+    //     console.log("test1")
+        
+    //     try {
+    //         const [results, fields] = await connection.query(
+    //             `SELECT * FROM Questions WHERE category = '${category}' ORDER BY RAND() LIMIT 1` 
+    //         );
+            
+    //         connection.close()
+
+    //         results.forEach(element => {
+    //             let question = element.question
+    //             let answer = element.answer
+    //             let choice1 = element.choice1 //need to wait for actual name once implemented
+    //             let choice2 = element.choice2 //need to wait for actual name once implemented
+    //             let choice3 = element.choice3 //need to wait for actual name once implemented
+    //             let category = element.category
+    //             questions.push(new Question(question,answer,[choice1,choice2,choice3],category))
+    //         });
+
+    //         console.log(questions)
+    //         return questions
+
+    //     } catch (err) {
+    //         console.log(err)
+    //         connection.close()
+    //         return null
+    //     }
+    // });
 }
 
 export async function submitScore(name, score) {

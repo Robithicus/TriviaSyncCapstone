@@ -6,14 +6,14 @@ export class Session {
     }
 
     getSessionData() {
-        return(PublicData(this.id, this.questions))
+        return(new PublicData(this.id, this.questions))
     }
 }
 
 class PublicData {
     constructor (sessionId, questions) {
         this.sessionId = sessionId
-        this.questions = questionsRandom(questions)
+        this.questions = this.questionsRandom(questions)
     }
 
     questionsRandom(questions) {
@@ -22,12 +22,12 @@ class PublicData {
         questions.forEach(question => {
             publicQuestionsTemp.push(new QuestionPublic(question.question, question.answer, question.choices, question.category))
         });
+
         while (publicQuestionsTemp.length > 0) {
-            randomnum = Math.floor(Math.random() * publicQuestionsTemp.length)
+            let randomnum = Math.floor(Math.random() * publicQuestionsTemp.length)
             publicQuestions.push(publicQuestionsTemp[randomnum])
             publicQuestionsTemp.splice(randomnum, 1)
         }
-
         return publicQuestions
     }
 }
@@ -36,7 +36,7 @@ class QuestionPublic {
     constructor(question, answer, choices, category) {
         this.question = question
         this.category = category
-        this.choices = randomChoices(answer, choices)
+        this.choices = this.randomChoices(answer, choices)
     }
 
     randomChoices(answer, choices) {
@@ -44,7 +44,7 @@ class QuestionPublic {
         let randoms = []
         
         while (options.length > 0) {
-            randomnum = Math.floor(Math.random()*options.length)
+            let randomnum = Math.floor(Math.random()*options.length)
             randoms.push(options[randomnum])
             options.splice(randomnum, 1)
         }
@@ -54,5 +54,5 @@ class QuestionPublic {
 }
 
 function randomSort() {
-    
+
 }

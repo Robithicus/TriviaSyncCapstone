@@ -11,7 +11,7 @@ const __dirname = path.resolve()
 
 app.use(express.json());
 
-app.use(express.static("/public"))
+app.use(express.static("public"))
 
 // app.get('/', (req, res) => {
 //   res.sendFile(page("index"))
@@ -27,9 +27,9 @@ app.use(express.static("/public"))
 //   }
 // })
 
-app.get("/scores", (req, res) => {
-  res.sendFile(page("scores"))
-})
+// app.get("/scores", (req, res) => {
+//   res.sendFile(page("scores"))
+// })
 
 app.get("/questions", async (req, res) => {
   // if ("sessionId" in req.query && req.query.sessionId != "") {
@@ -45,6 +45,7 @@ app.get("/questions", async (req, res) => {
   // }
   
   let questions = await database.getQuestions()
+  console.log(questions)
   let session = sessions.createSession(questions)
   let publicData = session.getSessionData();
   res.send(publicData)
