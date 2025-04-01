@@ -2,12 +2,12 @@ import { Session } from "./sessionData.js"
 
 let sessions = new Map() // map is like dictionary
 
-export function createSession(questions, answers) {
+export function createSession(questions) {
     let sessionId = `${getValidId()}`
-    let session = new Session(questions, answers, sessionId)
+    let session = new Session(questions, sessionId)
     sessions.set(sessionId, session)
     console.log(`Created Session ${sessionId}`)
-    return sessionId
+    return session
 }
 
 export function getSession(sessionId) {

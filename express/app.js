@@ -32,17 +32,20 @@ app.get("/scores", (req, res) => {
 })
 
 app.get("/questions", (req, res) => {
-  if ("sessionId" in req.query && req.query.sessionId != "") {
-    let sessionId = req.query.sessionId
-    let session = sessions.getSession(sessionId)
-    if (session != null) {
-      res.send(JSON.stringify(sessions.getSession(req.query.sessionId).questions))
-    } else {
-      res.send("No Existing Session")
-    }
-  } else {
-    res.send("Need Session Id")
-  }
+  // if ("sessionId" in req.query && req.query.sessionId != "") {
+  //   let sessionId = req.query.sessionId
+  //   let session = sessions.getSession(sessionId)
+  //   if (session != null) {
+  //     res.send(JSON.stringify(sessions.getSession(req.query.sessionId).questions))
+  //   } else {
+  //     res.send("No Existing Session")
+  //   }
+  // } else {
+  //   res.send("Need Session Id")
+  // }
+
+  let session = sessions.createSession(database.getQuestions())
+  res.send(JSON.stringify(session.getSessionData()))
 })
 
 app.post("/submit", async (req, res) => {
