@@ -50,10 +50,10 @@ const QuizSubmission = () => {
   const handleSubmitQuiz = async () => {
     try {
       // Send user's answers to the server for scoring
-      const response = await fetch('/submit-quiz', {
+      const response = await fetch('/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: { username ,answers, sessionId},
+        body: JSON.stringify({name: username, submissions: answers, sessionId: sessionId}),
       });
 
       if (!response.ok) {
