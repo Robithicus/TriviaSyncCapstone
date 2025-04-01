@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/quizzesComponent.css';
-import MiniLeaderboard from '../components/MiniLeaderboard';
 import UsernameForm from './UsernameForm';
 import QuizQuestion from './QuizQuestion';
 import QuizResults from './QuizResults';
 import DetailedResults from './DetailedResults';
 
 const QuizSubmission = () => {
+  const [questions, setQuestions] = useState([]);
+  const [sessionId, setSessionId] = useState('');
   const [answers, setAnswers] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
@@ -15,46 +16,27 @@ const QuizSubmission = () => {
   const [username, setUsername] = useState('');
   const [quizStarted, setQuizStarted] = useState(false);
 
-  const questions = [
-    {
-      id: 1,
-      category: "Geography",
-      question: "What is the capital of France?",
-      options: ["Berlin", "Madrid", "Paris", "Rome"],
-    },
-    {
-      id: 2,
-      category: "Astronomy",
-      question: "Which planet is known as the Red Planet?",
-      options: ["Earth", "Mars", "Jupiter", "Venus"],
-    },
-    {
-      id: 3,
-      category: "History",
-      question: "Who was the first President of the United States?",
-      options: ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "John Adams"],
-    },
-    {
-      id: 4,
-      category: "Sports",
-      question: "How many players are there in a soccer team?",
-      options: ["9", "10", "11", "12"],
-    },
-    {
-      id: 5,
-      category: "Movies",
-      question: "Who directed the movie 'Inception'?",
-      options: ["Christopher Nolan", "Steven Spielberg", "James Cameron", "Quentin Tarantino"],
-    },
-  ];
+  useEffect(() => {
+    // Fetch questions and session ID from the API
+    const fetchQuizData = async () => {
+      try {
+        const response = await fetch('/questions'); 
+        if (!response.ok) {
+          throw new Error('Failed to fetch quiz data');
+        }
+        const data = await response.json();
+        console.log('Fetched Data:', data);
+        console.log('Questions:', data.questions);
+        console.log('Session ID:', data.sessionId);
+        setQuestions(data.questions); // Assuming the API returns { questions: [...] }
+        setSessionId(data.sessionId); // Assuming the API returns { sessionId: '...' }
+      } catch (error) {
+        console.error('Error fetching quiz data:', error);
+      }
+    };
 
-  const correctAnswers = {
-    1: "Paris",
-    2: "Mars",
-    3: "George Washington",
-    4: "11",
-    5: "Christopher Nolan",
-  };
+    fetchQuizData();
+  }, []);
 
   const handleAnswerChange = (selectedOption) => {
     const updatedAnswers = [...answers];
@@ -65,16 +47,25 @@ const QuizSubmission = () => {
     setAnswers(updatedAnswers);
   };
 
-  const handleSubmitQuiz = () => {
-    let correctCount = 0;
-    answers.forEach((answer) => {
-      if (correctAnswers[answer.questionId] === answer.selectedAnswer) {
-        correctCount++;
+  const handleSubmitQuiz = async () => {
+    try {
+      // Send user's answers to the server for scoring
+      const response = await fetch('/submit-quiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: { username ,answers, sessionId},
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit quiz');
       }
-    });
-    const finalScore = correctCount / questions.length;
-    setScore(finalScore);
-    setIsComplete(true);
+
+      const data = await response.json();
+      setScore(data.score); // Assuming the server returns { score: 0.8 }
+      setIsComplete(true);
+    } catch (error) {
+      console.error('Error submitting quiz:', error);
+    }
   };
 
   const handleSubmit = () => {
@@ -95,6 +86,8 @@ const QuizSubmission = () => {
           setUsername={setUsername}
           setQuizStarted={setQuizStarted}
         />
+      ) : questions.length === 0 ? (
+        <p>Loading questions...</p>
       ) : !isComplete ? (
         <QuizQuestion
           currentQuestion={currentQuestion}
@@ -109,7 +102,6 @@ const QuizSubmission = () => {
           score={score}
           answers={answers}
           questions={questions}
-          correctAnswers={correctAnswers}
           setShowResults={setShowResults}
         />
       ) : (
@@ -117,7 +109,6 @@ const QuizSubmission = () => {
           score={score}
           answers={answers}
           questions={questions}
-          correctAnswers={correctAnswers}
         />
       )}
     </div>

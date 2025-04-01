@@ -8,5 +8,5 @@ CREATE TABLE Questions (
 );
 CREATE TABLE Scores (
     username TEXT NOT NULL,
-    score INT NOT NULL   
+    score INT NOT NULL
 );

@@ -1,4 +1,5 @@
 import React from 'react';
+import MiniLeaderboard from '../components/MiniLeaderboard';
 
 const QuizResults = ({ score, answers, questions, correctAnswers, setShowResults }) => {
   return (
@@ -11,6 +12,8 @@ const QuizResults = ({ score, answers, questions, correctAnswers, setShowResults
       <button onClick={() => setShowResults(true)} className="quiz-submit-button">
         See Results
       </button>
+      <MiniLeaderboard/>
+
     </div>
   );
 };
