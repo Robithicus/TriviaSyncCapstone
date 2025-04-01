@@ -1,0 +1,102 @@
+
+@font-face {
+    font-family: 'Namaku';
+    src: url('../fonts/Namaku.ttf') format('truetype');
+}
+
+.footerContainer{
+  padding: 0px;
+}
+
+.footer {
+    background-color: orangered; /* Example background color */
+    color: black;
+    text-align: center;
+    
+    padding: .1vw;
+    position: relative; /* Ensure it stays at the bottom */
+    font-family: 'Namaku';
+    font-size: 1.5rem;
+    min-height: 25px;
+}
+
+  
+  .footer-elements {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Distribute space between items */
+    align-items: center; /* Center items vertically */
+    margin-left: auto; /* Move elements to the end of the flex container */
+}
+.footer-content {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  justify-content: center; /* Center items horizontally */
+}
+.footer-content a {
+    color:black;
+    text-decoration: none;
+    padding-right: .9vw;
+    border-right: #33ff00 thin dotted;
+    margin-right: 2vw;
+}
+
+  .footer-content a:hover {
+    text-decoration: underline;
+}
+.top-go{
+    display:flex;
+    justify-content: flex-end;
+
+}
+.top-go button {
+    background-color: teal;
+    height: 90%;
+    color: white;
+    border-radius: 20px;
+    box-shadow:2px 2px 5px #33ff00 ;
+    padding: 0.2vw .2vw;
+
+    cursor: pointer;
+    margin-right: .2vw;
+  }
+  
+button:hover {
+    background-color: #33ff00;
+}
+
+
+#copyright {
+    font-size: .8rem;
+    margin-top: 1rem;
+}
+
+
+@media (max-width: 700px) {
+  .footer-elements {
+    flex-direction: column-reverse; /* Reverse the order of items */
+    align-items: center; /* Center items horizontally */
+      
+  }
+
+  .footer-content {
+      justify-content: center; /* Center items horizontally */
+      margin: 3px;
+      padding:0;
+  }
+
+  .top-go {
+      justify-content: flex-end; /* Keep the button on the right side */
+      width: 100%; /* Full width */
+      margin-bottom: 10px;
+  }
+
+  .top-go button {
+      width: auto; /* Adjust button width */
+  }
+
+  .footer-content a, #copyright, .top-go button {
+      font-size: 1.2rem; /* Set a minimum font size */
+      
+  }
+}

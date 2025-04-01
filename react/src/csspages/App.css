@@ -1,0 +1,65 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+  background: linear-gradient(0deg, #6a11cb, #2575fc);
+}
+
+.navbar {
+  height: 8.5vh; /* Adjust this value to match NavBar height */
+}
+
+
+.main-content {
+  flex: 1;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding:.5vh 10vw; /* Add some padding to avoid touching the edges */
+  box-sizing:border-box; /* Include padding in the element's total width and height */
+}
+.background-container {
+  flex: 1; /* Full viewport height */
+  width: 100%;
+  padding-top: 20px;
+  background: 
+    url('../assets/sidepatternleft.png') repeat-y left top, /* Left repeating pattern */
+    url('../assets/sidepatternright.png') repeat-y center top, /* Right repeating pattern */
+    url('../assets//pngitems/bluishpattern.png') repeat bottom center,
+    linear-gradient(0deg,#c00000, #6a11cb, #2575fc); /* Middle solid color (or use a gradient) */
+    
+  background-size: 
+    
+    5vw, /* Width of left pattern, auto height for repeat, minimum 100px */
+    5vw, /* Width of right pattern, minimum 100px */
+    50vh,
+    auto; /* Middle fills the rest */
+  background-position: 
+    left top, /* Pin left pattern to left */
+    right top; /* Pin right pattern to right */
+  background-attachment: scroll;
+}
+
+/* Styled box in the foreground */
+.box {
+  max-width: 1600px; /* Fixed width for content */
+  margin: 20px auto; /* Center horizontally with top/bottom margin */
+  margin-top: 0px;
+
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  border: 2px solid #333; /* Dark border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Optional: Responsive adjustments */
+@media (max-width: 700px) {
+  .box {
+    max-width: 90%; /* Shrink box on smaller screens */
+  }
+}
+
+
+

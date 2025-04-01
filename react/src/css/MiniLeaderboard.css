@@ -1,0 +1,139 @@
+@font-face {
+    font-family: 'Namaku';
+    src: url('../fonts/Namaku.ttf') format('truetype');
+  }
+  
+  .mini-leaderboard {
+    width: 100%; /* Compact size for embedding */
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Namaku', sans-serif;
+  }
+  
+  .mini-leaderboard h2 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #ff8a65, #ff5722); /* Orange gradient from view-btn */
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mini-leaderboard-list {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: .5vh;
+  }
+  
+  .mini-leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    background: linear-gradient(90deg, #22eec4, #aafbe7); 
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.3s;
+  }
+  
+  .mini-leaderboard-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mini-leaderboard-item.top-three {
+    background: linear-gradient(90deg, #ffeb3b, #fbc02d); /* Bright gold */
+    color: #333;
+  }
+  
+  .mini-leaderboard-item.top-three:nth-child(2) {
+    background: linear-gradient(90deg, #b0bec5, #78909c); /* Softer silver */
+  }
+  
+  .mini-leaderboard-item.top-three:nth-child(3) {
+    background: linear-gradient(90deg, #ff8a65, #f4511e); /* Warm bronze */
+  }
+  
+  .rank {
+    font-weight: bold;
+    font-size: 18px;
+    width: 40px;
+    text-align: center;
+    color: #d81b60; /* Deep pink for contrast */
+  }
+  
+  .medal {
+    font-size: 24px;
+    animation: pulse 1.5s infinite;
+  }
+  
+  .name {
+    flex-grow: 1;
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 10px;
+    color: #424242; /* Dark gray for readability */
+  }
+  
+  .score {
+    font-size: 16px;
+    font-weight: bold;
+    color: #0288d1; /* Bright blue */
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .no-players {
+    text-align: center;
+    font-size: 16px;
+    color: #f4511e; /* Orange-red */
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Pulse animation for medals */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 350px) {
+    .mini-leaderboard {
+      width: 100%;
+    }
+  
+    .mini-leaderboard-item {
+      flex-direction: column;
+      text-align: center;
+      padding: 8px;
+    }
+  
+    .name {
+      padding-left: 0;
+      margin: 5px 0;
+    }
+  
+    .score {
+      padding: 3px 6px;
+    }
+  }

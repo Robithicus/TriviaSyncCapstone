@@ -11,19 +11,21 @@ const __dirname = path.resolve()
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.sendFile(page("index"))
-})
+app.use(express.static("/public"))
 
-app.get("/quiz", async (req, res) => {
-  if ("sessionId" in req.query && req.query.sessionId != "") {
-    res.sendFile(page("quiz"))
-  } else {
-    let questions = await database.getQuestions("TES", 3)
-    let sessionId = sessions.createSession(questions[0], questions[1])
-    res.redirect(`/quiz?sessionId=${sessionId}`)
-  }
-})
+// app.get('/', (req, res) => {
+//   res.sendFile(page("index"))
+// })
+
+// app.get("/quiz", async (req, res) => {
+//   if ("sessionId" in req.query && req.query.sessionId != "") {
+//     res.sendFile(page("quiz"))
+//   } else {
+//     let questions = await database.getQuestions("TES", 3)
+//     let sessionId = sessions.createSession(questions[0], questions[1])
+//     res.redirect(`/quiz?sessionId=${sessionId}`)
+//   }
+// })
 
 app.get("/scores", (req, res) => {
   res.sendFile(page("scores"))

@@ -1,0 +1,171 @@
+/* General container for the quiz */
+.quiz-container {
+    font-family: 'Namaku', sans-serif;
+    background: linear-gradient(135deg, #ff7eb3, #ff758c, #ffb199); /* Vibrant gradient background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 30px;
+    max-width: 700px; /* Limit the width of the quiz */
+    margin: 40px auto; /* Center the quiz on the page */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    color: #ffffff; /* White text for contrast */
+  }
+  
+  /* Title for the quiz */
+  .quiz-title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffeb3b; /* Bright yellow for the title */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); /* Subtle shadow for text */
+  }
+  
+  /* Question styling */
+  .quiz-question {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffeb3b; /* Bright yellow for questions */
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Options container */
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Add spacing between options */
+    margin-bottom: 2vw;
+  }
+  
+  /* Individual option styling */
+  .quiz-option {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #42a5f5, #478ed1); /* Blue gradient for options */
+    border: 2px solid #ffffff; /* White border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: #ffffff; /* White text for options */
+    font-weight: bold;
+  }
+  
+  .quiz-option:hover {
+    background: linear-gradient(135deg, #66bb6a, #43a047); /* Green gradient on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+  }
+  
+  .quiz-option input[type="radio"] {
+    margin-right: 10px; /* Space between radio button and label */
+  }
+  .center-quiz-username{
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Space elements evenly with space between them */
+    gap: 3vw;
+    align-items: center; /* Align items vertically in the center */
+     
+  }
+  /* Submit button */
+  .quiz-submit-button {
+    background: linear-gradient(135deg, #ff5722, #e64a19); /* Orange gradient for button */
+    color: white; /* White text */
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    padding-bottom: 9px;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+    font-size: max(1.5vw,14px);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .quiz-submit-button:hover {
+    background: linear-gradient(135deg, #ff7043, #d84315); /* Lighter orange on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+  }
+  
+  /* Results section */
+  .quiz-results {
+    text-align: center;
+    font-size: 20px;
+    color: #ffffff; /* White text for results */
+    margin-top: 20px;
+    margin-bottom: 1vw;
+  }
+  
+  .quiz-results h2 {
+    font-size: 32px;
+    color: #4caf50; /* Green for success */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .quiz-results p {
+    margin: 10px 0;
+    color: #aaff49; /* Bright yellow for results text */
+    text-shadow: 5px 2px 4px black;
+    background-color:rgb(40, 162, 243);
+    border-radius: 20px;
+
+  }
+  
+/* Detailed results */
+.quiz-detailed-results {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #8e44ad, #3498db); /* Purple to blue gradient */
+    padding: 25px;
+    border-radius: 15px; /* Rounded corners */
+    color: #ffffff; /* White text for contrast */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    text-align: left; /* Align text to the left for better readability */
+  }
+  
+  .quiz-detailed-results h3 {
+    font-size: 24px;
+    color: #f1c40f; /* Bright yellow for question titles */
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Subtle shadow for text */
+  }
+  
+  .quiz-detailed-results p {
+    font-size: 18px;
+    margin: 8px 0;
+    color: #ecf0f1; /* Light gray for answers */
+  }
+  
+  .quiz-detailed-results .correct {
+    color: #2ecc71; /* Green for correct answers */
+    font-weight: bold;
+  }
+  
+  .quiz-detailed-results .incorrect {
+    color: #e74c3c; /* Red for incorrect answers */
+    font-weight: bold;
+  }
+  
+  .quiz-detailed-results hr {
+    border: none;
+    border-top: 2px solid #ffffff; /* White horizontal line */
+    margin: 15px 0;
+  }
+  
+  .quiz-detailed-results .question-container {
+    margin-bottom: 20px; /* Add spacing between questions */
+  }
+  
+  .quiz-detailed-results .question-container:last-child {
+    margin-bottom: 0; /* Remove margin for the last question */
+  }
+
+  .leaderboard-quiz-results {
+    background-color: #134e92; /* Green background */
+    border-radius: 20px;
+    padding: 20px; /* Add padding for spacing */
+    color: #ffffff; /* Ensure text is white for contrast */
+    text-align: center; /* Center-align the text */
+    width: 100%; /* Ensure it spans the full width of its container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+  }
+  

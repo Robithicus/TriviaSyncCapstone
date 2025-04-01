@@ -1,0 +1,171 @@
+
+@font-face {
+  font-family: 'Namaku';
+  src: url('../fonts/Namaku.ttf') format('truetype');
+}
+
+@keyframes colorCycle {
+  0% { color: #FF0000; }
+  14% { color: #FFA500; }
+  28% { color: #FFFF00; }
+  42% { color: #008000; }
+  57% { color: #008080; }
+  71% { color: #0000FF; }
+  85% { color: #4B0082; }
+  95% { color: #EE82EE; }
+  100% { color: #FF0000; }
+}
+
+.navbar {
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  grid-template-rows: 1fr;
+
+  align-items: end;
+  background: linear-gradient(45deg, #FF0000, #FFA500, #FFFF00, #008000,teal, #0000FF, #4B0082, #EE82EE);
+  border-bottom: #000000 .15vw solid;
+  box-shadow: 0 .2vw .4vw rgba(0, 0, 100, 0.7);
+  padding: 0;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  font-family: 'Namaku';
+  gap: 0;
+  height: 8.5vw;
+
+}
+
+.navbar-logo {
+  grid-column: 1 /span 1;
+  height: 8vw;
+  align-items: center;
+  padding-left: 1vw;
+
+}
+
+.navbar-logo img {
+  height: 100%;
+  width: auto;
+  
+  
+   
+}
+
+.navbar-image {
+  grid-column: 6/span 2;
+
+  height: 8vw;
+  border: 2px,0px,0px,2px solid black
+}
+.navbar-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.navbar-title {
+  user-select: none;
+  grid-column: 8 / span 1;
+  font-size: 2.5vw; /* Increase title size */
+  font-weight: bold;
+  animation: colorCycle linear infinite 25s ;
+  text-shadow: 
+  -.35vw -.35vw 0 black,  
+  .35vw -.35vw 0 black,
+  -.35vw .35vw 0 black,
+  .35vw .35vw 0 black;
+  text-align: center;
+  padding-right: 1vw;
+  padding-left: 1vw;
+  padding-bottom: 1vw;
+  margin-bottom: 0px;
+  padding-top: 1.1vw;
+  border-bottom: #000000 1.4vw solid;
+}
+
+.navbar-links {
+  grid-column: 2/ span 4;
+  grid-row:1 ;
+  display: flex;
+  justify-content:end;
+  gap: 0; /* Remove gap between links */
+  object-fit: contain;
+  border-right: .3vw solid black;
+}
+
+.nav-link {
+  font-weight: bolder;
+  color: black;
+  font-size: max(2vw,16px); /* Increase font size */
+  padding: .1vw 1vw 0 ; /* Increase padding */
+  border-radius: 0; /* Remove border radius */
+  transition: background-color 0.2s, transform 0.2s; /* Add transition for transform */
+  text-decoration: none;
+  border-left: .25vw solid black;
+  border-top: .3vw solid black; /* Add black border */
+  border-bottom: .15vw solid black;
+}
+
+.nav-link:hover {
+  color: rgb(51, 255, 0);
+  transform: scale(1.1); /* Add scale effect on hover */
+}
+.nav-link:focus,
+.nav-link:active {
+  color: rgb(51, 255, 0); /* Change this to your desired color */
+}
+
+.nav-link:nth-child(1) {
+  background-color: #FF0000;
+}
+
+.nav-link:nth-child(2) {
+  background-color: #FFA500;
+}
+
+.nav-link:nth-child(3) {
+  background-color: #FFFF00;
+}
+
+.nav-link:nth-child(4) {
+  background-color: #00A000;
+}
+
+.nav-link:nth-child(5) {
+  background-color: rgb(0, 63, 146);
+}
+
+.nav-link:nth-child(6) {
+  background-color: #4B0082;
+}
+
+.nav-link:nth-child(7) {
+  background-color: #EE82EE;
+}
+
+/* Cycle through the colors if more than 7 links are added */
+.nav-link:nth-child(8) {
+  background-color: #FF0000;
+}
+
+.nav-link:nth-child(9) {
+  background-color: #FFA500;
+}
+
+.nav-link:nth-child(10) {
+  background-color: #FFFF00;
+}
+
+.nav-link:nth-child(11) {
+  background-color: #008000;
+}
+
+.nav-link:nth-child(12) {
+  background-color: teal;
+}
+
+.nav-link:nth-child(13) {
+  background-color: #4B0082;
+}
+
+.nav-link:nth-child(14) {
+  background-color: #EE82EE;
+}
