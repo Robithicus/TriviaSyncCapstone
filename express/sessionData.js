@@ -17,10 +17,18 @@ class PublicData {
     }
 
     questionsRandom(questions) {
-        publicQuestions = []
+        let publicQuestionsTemp = []
+        let publicQuestions = []
         questions.forEach(question => {
-            publicQuestions.push(new QuestionPublic(question.question, question.answer, question.choices, question.category))
+            publicQuestionsTemp.push(new QuestionPublic(question.question, question.answer, question.choices, question.category))
         });
+        while (publicQuestionsTemp.length > 0) {
+            randomnum = Math.floor(Math.random() * publicQuestionsTemp.length)
+            publicQuestions.push(publicQuestionsTemp[randomnum])
+            publicQuestionsTemp.splice(randomnum, 1)
+        }
+
+        return publicQuestions
     }
 }
 
@@ -32,8 +40,8 @@ class QuestionPublic {
     }
 
     randomChoices(answer, choices) {
-        options = [answer, choices[0], choices[1], choices[2]]
-        randoms = []
+        let options = [answer, choices[0], choices[1], choices[2]]
+        let randoms = []
         
         while (options.length > 0) {
             randomnum = Math.floor(Math.random()*options.length)
@@ -43,4 +51,8 @@ class QuestionPublic {
 
         return randoms
     }
+}
+
+function randomSort() {
+    
 }
