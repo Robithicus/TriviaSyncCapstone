@@ -74,7 +74,7 @@ export async function getQuestions(category, amount) {
             return []
         }
     }
-    
+
     return questions
 
     // categories.forEach(async category =>{
@@ -122,6 +122,25 @@ export async function submitScore(name, score) {
         connection.close()
         return 0
     } catch (err) {
+        console.log(err)
+        connection.close()
+        return -1
+    }
+}
+
+export async function getPosition(name, score) {
+    const connection = await getConnection()
+
+    name = nnameParse(name)
+
+    try {
+        const [results, fields] = await connection.query(
+            `SELECT * FROM Scores`
+        )
+        connection.close()
+        return results.findIndex(l => l.username == name && l.score == score) + 1
+    }
+    catch (err) {
         console.log(err)
         connection.close()
         return -1

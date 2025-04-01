@@ -45,19 +45,26 @@ app.get("/questions", async (req, res) => {
   // }
   
   let questions = await database.getQuestions()
-  console.log(questions)
   let session = sessions.createSession(questions)
-  let publicData = session.getSessionData();
-  res.send(publicData)
+  res.send(session.questionsPublic)
 })
 
 app.post("/submit", async (req, res) => {
+  console.log(req.body)
   const {name, submissions, sessionId} = req.body
-  let score = scoreSubmission(submissions, sessions.getSession(sessionId).answers)
-  await database.submitScore(name, scoreSubmission(submissions, sessions.getSession(sessionId).answers))
-  sessions.deleteSession(sessionId)
+
+  let session = sessions.getSession(sessionId)
+  let answer = session.getAnswers()
+  let score = scoreSubmission(submissions, answer)
+
+  await database.submitScore(name, score)
   wssBroadcastScores()
-  res.send(`${score}`)
+
+  let position = database.getPosition(name, score)
+  let data = { score: score, position: position, answers: answer }
+
+  sessions.deleteSession(sessionId)
+  res.send(data)
 })
 
 app.listen(port, () => {

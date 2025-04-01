@@ -1,11 +1,33 @@
 export class Session {
     constructor(questions, id) {
-        this.questions = questions
         this.id = id
+        this.questions = this.getQuestionsOrdered(questions)
+        this.questionsPublic = this.getQuestionsPublic()
         this.wsc = null
     }
 
-    getSessionData() {
+    getAnswers() {
+        let answers = []
+        this.questions.forEach(question => {
+            answers.push(question.answer)
+        })
+        return answers
+    }
+
+    getQuestionsOrdered(questions) {
+        let questionsTemp = questions
+        let questionsOrdered = []
+
+        while (questionsTemp.length > 0) {
+            let randomnum = Math.floor(Math.random() * questionsTemp.length)
+            questionsOrdered.push(questionsTemp[randomnum])
+            questionsTemp.splice(randomnum, 1)
+        }
+
+        return questionsOrdered
+    }
+
+    getQuestionsPublic() {
         return(new PublicData(this.id, this.questions))
     }
 }
@@ -17,17 +39,17 @@ class PublicData {
     }
 
     questionsRandom(questions) {
-        let publicQuestionsTemp = []
+        //let publicQuestionsTemp = []
         let publicQuestions = []
         questions.forEach(question => {
-            publicQuestionsTemp.push(new QuestionPublic(question.question, question.answer, question.choices, question.category))
+            publicQuestions.push(new QuestionPublic(question.question, question.answer, question.choices, question.category))
         });
 
-        while (publicQuestionsTemp.length > 0) {
-            let randomnum = Math.floor(Math.random() * publicQuestionsTemp.length)
-            publicQuestions.push(publicQuestionsTemp[randomnum])
-            publicQuestionsTemp.splice(randomnum, 1)
-        }
+        // while (publicQuestionsTemp.length > 0) {
+        //     let randomnum = Math.floor(Math.random() * publicQuestionsTemp.length)
+        //     publicQuestions.push(publicQuestionsTemp[randomnum])
+        //     publicQuestionsTemp.splice(randomnum, 1)
+        // }
         return publicQuestions
     }
 }
