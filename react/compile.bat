@@ -1,0 +1,1 @@
+npm run build && xcopy dist\* ..\express\public\ /E /Y
