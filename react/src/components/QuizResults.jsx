@@ -2,8 +2,6 @@ import React from 'react';
 import MiniLeaderboard from '../components/MiniLeaderboard';
 
 const QuizResults = ({ score, answers, questions, correctAnswers, setShowResults }) => {
-  console.log(answers)
-  console.log(correctAnswers)
   return (
     <div className="quiz-results">
       <h2>Quiz Complete!</h2>
@@ -11,9 +9,9 @@ const QuizResults = ({ score, answers, questions, correctAnswers, setShowResults
       <p>
         You got {numberCorrect(answers, correctAnswers)} out of {questions.length} correct
       </p>
-      {/* <button onClick={() => setShowResults(true)} className="quiz-submit-button">
+      <button onClick={() => setShowResults(true)} className="quiz-submit-button">
         See Results
-      </button> */}
+      </button>
       <MiniLeaderboard/>
 
     </div>

@@ -42,7 +42,7 @@ const QuizSubmission = () => {
   const handleAnswerChange = (selectedOption) => {
     const updatedAnswers = [...answers];
     updatedAnswers[currentQuestionIndex] = {
-      questionId: questions[currentQuestionIndex].id,
+      questionId: currentQuestionIndex,
       selectedAnswer: selectedOption,
     };
     setAnswers(updatedAnswers);
@@ -112,6 +112,7 @@ const QuizSubmission = () => {
           score={score}
           answers={answers}
           questions={questions}
+          correctAnswers={correctAnswers}
         />
       )}
     </div>
