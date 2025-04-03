@@ -1,0 +1,1 @@
+cd react && compile.bat && cd ../express && node app.js

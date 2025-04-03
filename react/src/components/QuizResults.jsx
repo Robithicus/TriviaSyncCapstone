@@ -7,13 +7,13 @@ const QuizResults = ({ score, answers, questions, correctAnswers, setShowResults
   return (
     <div className="quiz-results">
       <h2>Quiz Complete!</h2>
-      <p>Your score: {score * 100}%</p>
+      <p>Your score: {score}</p>
       <p>
         You got {numberCorrect(answers, correctAnswers)} out of {questions.length} correct
       </p>
-      <button onClick={() => setShowResults(true)} className="quiz-submit-button">
+      {/* <button onClick={() => setShowResults(true)} className="quiz-submit-button">
         See Results
-      </button>
+      </button> */}
       <MiniLeaderboard/>
 
     </div>
